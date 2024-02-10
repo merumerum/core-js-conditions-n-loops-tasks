@@ -221,8 +221,11 @@ function isPalindrome(str) {
  *  'qwerty', 'Q'     => -1
  *  'qwerty', 'p'     => -1
  */
-function getIndexOf(/* str, letter */) {
-  throw new Error('Not implemented');
+function getIndexOf(str, letter) {
+  for (let i = 0; i < str.length; i += 1) {
+    if (str[i] === letter) return i;
+  }
+  return -1;
 }
 
 /**
@@ -240,8 +243,14 @@ function getIndexOf(/* str, letter */) {
  *  12345, 0    => false
  *  12345, 6    => false
  */
-function isContainNumber(/* num, digit */) {
-  throw new Error('Not implemented');
+function isContainNumber(num, digit) {
+  const numStr = String(num);
+  const digitStr = String(digit);
+
+  for (let i = 0; i < numStr.length; i += 1) {
+    if (numStr[i] === digitStr) return true;
+  }
+  return false;
 }
 
 /**
@@ -340,8 +349,23 @@ function sortByAsc(/* arr */) {
  *  '012345', 3 => '024135' => '043215' => '031425'
  *  'qwerty', 3 => 'qetwry' => 'qtrewy' => 'qrwtey'
  */
-function shuffleChar(/* str, iterations */) {
-  throw new Error('Not implemented');
+function shuffleChar(str, iterations) {
+  let res = str;
+
+  for (let i = 1; i <= iterations; i += 1) {
+    let even = '';
+    let odd = '';
+    for (let j = 0; j < str.length; j += 1) {
+      if (j % 2 === 0) {
+        even += res[j];
+      } else {
+        odd += res[j];
+      }
+    }
+    res = even + odd;
+    if (res === str) return shuffleChar(str, iterations % i);
+  }
+  return res;
 }
 
 /**
